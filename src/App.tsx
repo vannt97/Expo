@@ -1,34 +1,38 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-
+import logo from "/assets/svgs/marvy-group.svg";
+import arrow from "/assets/svgs/arrow.svg";
+import btnZalo from "/assets/svgs/btn-zalo.svg";
+import btnWebAr from "/assets/svgs/btn-web-ar.svg";
+import { useMemo } from "react";
+import { deviceType } from "./utils/common";
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+  const renderContent = useMemo(() => {
+    if (deviceType() == "mobile") {
+      return (
+        <div className="bg">
+          <p className="pt-[28px]"></p>
+          <img className="w-[130px] mx-auto mb-[50px]" src={logo} alt="" />
+          <div className="uppercase text-center text-[24px] mb-[30px] leading-tight">
+            chọn nền tảng
+            <span className="block">trải nghiệm</span>
+          </div>
+          <img className="mx-auto w-[30px] mb-[30px]" src={arrow} alt="" />
+          <img
+            onClick={() => {
+              window.location.href =
+                "https://zalo.me/s/4566869252093326007/?env=TESTING&version=1";
+            }}
+            src={btnZalo}
+            className="mx-auto w-[85%] mb-[25px]"
+            alt=""
+          />
+          <img src={btnWebAr} className="mx-auto w-[85%]" alt="" />
+        </div>
+      );
+    } else {
+      return <div className="flex items-center justify-center"></div>;
+    }
+  }, []);
+  return <>{renderContent}</>;
 }
 
 export default App;

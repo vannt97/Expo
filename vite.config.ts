@@ -47,7 +47,7 @@ export default defineConfig({
             extType = "fonts";
             return `assets/${extType}/[name][extname]`;
           }
-          return `${extType}/[name]-[hash][extname]`;
+          return `assets/${extType}/[name]-[hash][extname]`;
         },
       },
     },
